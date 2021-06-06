@@ -16,7 +16,7 @@
     <h1>Insert Book</h1>
     <div class="container">
         <form method="POST"
-              action="https://arias-spu-students.herokuapp.com/api/students/">
+              action="https://ancient-lake-88937.herokuapp.com/api/books">
             <h2>Please insert the book information</h2>
             <div class="mb-3 form-group">
                 <label for="title">Title</label>
@@ -40,7 +40,7 @@
             </div>
             <div class="mb-3 form-group">
                 <label for="price">Price</label>
-                <input type="number" name="price" step="0.01" id="price" class="form-control"
+                <input type="number" name="price" step="0.001" id="price" class="form-control"
                        placeholder="Price">
             </div>
             <div class="mb-3 form-group">
@@ -50,6 +50,7 @@
                 <input type="radio" id="no" name="hardCover" value="no">
                 <label for="no">No</label>
             </div>
+            //refresh the whole page
             <div class="mb-3 form-group">
                 <input type="submit" value="Submit">
             </div>
