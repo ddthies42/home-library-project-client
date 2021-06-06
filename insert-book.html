@@ -36,15 +36,15 @@
             </div>
             <div class="mb-3 form-group">
                 <label for="price">Price</label>
-                <input type="number" name="price" id="price" class="form-control"
+                <input type="number" name="price" step="0.01" id="price" class="form-control"
                        placeholder="Price">
             </div>
             <div class="mb-3 form-group">
-                <label for="hardCover">Hard Cover?</label>
-                <select class="form-select" id="hardCover" name="hardCover">
-                    <option value="true" selected>Yes</option>
-                    <option value="false">No</option>
-                </select>
+                <p>Hard Cover?</p>
+                <input type="radio" id="yes" name="hardCover" value="yes">
+                <label for="yes">Yes</label>
+                <input type="radio" id="no" name="hardCover" value="no">
+                <label for="no">No</label>
             </div>
             <div class="mb-3 form-group">
                 <input type="submit" value="Submit">
