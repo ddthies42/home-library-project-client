@@ -5,9 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Show Book</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <meta name="author" content="Thy Tran">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 <body>
+<div class="container">
+    <h1>Show All Books</h1>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Home Page</a></li>
+                <li><a href="books.html">Show all Books</a> </li>
+                <li><a href="show-book.html">Find a Book</a></li>
+                <li><a href="insert-book.html">Insert Book</a></li>
+                <li><a href="update-book.html">Update Book</a></li>
+                <li><a href="delete-book.html">Delete Book</a></li>
+            </ul>
+        </div>
+    </nav>
+    <button class="btn-primary btn-lg" id="btnLoadBooks">Load Books</button>
+    <div class="jumbotron" id="output"></div>
+</div>
 <script>
     function CreateTable(data){
         let table = "";
@@ -55,6 +77,5 @@
     });
 
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 </html>

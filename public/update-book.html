@@ -2,9 +2,103 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Insert Book</title>
+    <meta name="author" content="Thy Tran">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 <body>
+<div class="container">
+    <h1>Update Book</h1>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Home Page</a></li>
+                <li><a href="books.html">Show all Books</a> </li>
+                <li><a href="show-book.html">Find a Book</a></li>
+                <li><a href="insert-book.html">Insert Book</a></li>
+                <li><a href="update-book.html">Update Book</a></li>
+                <li><a href="delete-book.html">Delete Book</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <form method="PATCH"
+              action="https://ancient-lake-88937.herokuapp.com/api/books/:id">
+            <h2>Please insert the book information</h2>
+            <div class="mb-3 form-group">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" class="form-control"
+                       placeholder="Title">
+            </div>
+            <div class="mb-3 form-group">
+                <label for="description">Description</label>
+                <input type="text" name="description" id="description" class="form-control"
+                       placeholder="Description">
+            </div>
+            <div class="mb-3 form-group">
+                <label for="year">Year</label>
+                <input type="number" name="year" id="year" class="form-control"
+                       placeholder="Year">
+            </div>
+            <div class="mb-3 form-group">
+                <label for="author">Author</label>
+                <input type="text" name="author" id="author" class="form-control"
+                       placeholder="Author">
+            </div>
+            <div class="mb-3 form-group">
+                <label for="price">Price</label>
+                <input type="number" name="price" step="0.01" id="price" class="form-control"
+                       placeholder="Price">
+            </div>
+            <div class="mb-3 form-group">
+                <p>Hard Cover?</p>
+                <input type="radio" id="yes" name="hardCover" value="yes" required>
+                <label for="yes">Yes</label>
+                <input type="radio" id="no" name="hardCover" value="no">
+                <label for="no">No</label>
+            </div>
+            <!--            &lt;!&ndash; refresh the whole page &ndash;&gt;-->
+            <!--            <div class="mb-3 form-group">-->
+            <!--                <input type="submit" value="Submit">-->
+            <!--            </div>-->
+        </form>
+    </div>
+    <div class="container">
+        <button class="btn btn-lg btn-outline-primary" id="btnInsertBook">Insert Book</button>
+    </div>
+    <div class="jumbotron" id="output">
+
+    </div>
+</div>
+<script>
+    document.getElementById("btnInsertBook").addEventListener("click", (event) =>{
+        let url = "https://ancient-lake-88937.herokuapp.com/"
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function (){
+            if (this.readyState == 4 && this.status == 200){
+                document.getElementById("output").innerHTML =
+                    "<pre>" + this.responseText + "</pre>";
+            }
+        };
+
+        let bookData = "title=" + document.getElementById("title").value + "&" +
+            "description=" + document.getElementById("description").value  + "&" +
+            "year="  + document.getElementById("year").value  + "&" +
+            "author="  + document.getElementById("author").value  + "&" +
+            "price="  + document.getElementById("price").value  + "&" +
+            "hardCover="  + document.getElementById("hardCover").value  + "&";
+        xhttp.open('POST', url, true);
+        // Just needed to place this line AFTER opening the object
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send(bookData);
+    });
+</script>
 
 </body>
 </html>
