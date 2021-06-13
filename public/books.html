@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Show Book</title>
+    <title>Show All the Book</title>
     <meta name="author" content="Thy Tran">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -27,7 +27,6 @@
             </ul>
         </div>
     </nav>
-    <button class="btn-primary btn-lg" id="btnLoadBooks">Load Books</button>
     <div class="jumbotron" id="output"></div>
 </div>
 <script>
@@ -37,11 +36,14 @@
             '<table class="table table-bordered table-hover"> \n' +
             '   <thead>\n' +
             '       <tr>\n' +
+            '           <th scope="col">ID</th> \n'+
             '           <th scope="col">Title</th> \n'+
             '           <th scope="col">Description</th> \n'+
             '           <th scope="col">Year</th> \n'+
             '           <th scope="col">Author</th> \n'+
+            '           <th scope="col">Price</th> \n'+
             '           <th scope="col">Hard Cover</th> \n'+
+            '           <th scope="col">Actions</th> \n'+
             '       </tr>\n' +
             '   </thead>\n' +
             '   <tbody>\n';
@@ -49,12 +51,17 @@
         for (let book in data){
             table +=
                 '       <tr>\n' +
+                '           <td>' + data[book]["_id"] +  '</td>\n' +
                 '           <td>' + data[book]["title"]+  '</td>\n' +
                 '           <td>' + data[book]["description"]+  '</td>\n' +
                 '           <td>' + data[book]["year"]+  '</td>\n' +
                 '           <td>' + data[book]["author"]+  '</td>\n' +
                 '           <td>' + data[book]["price"]+  '</td>\n' +
                 '           <td>' + data[book]["hardCover"]+  '</td>\n' +
+                '           <td style=\"text-align:center\"> <button class=\"btn btn-primary\" onclick=\"deleteBook(\''+ data[book]["_id"] +
+                '\')\">Delete</button> <br><br> <button class=\"btn btn-primary\" onclick=\"updateBook(\'' +
+                data[book]["_id"] +
+                '\')\">Update</button> </td>\n' +
                 '       </tr>\n';
         }
 
@@ -63,8 +70,8 @@
             '</table>\n'
         return table;
     }
-    document.getElementById("btnLoadBooks").addEventListener("click", (event) =>{
-        let url = "https://ancient-lake-88937.herokuapp.com/"
+    window.addEventListener('load', (event) =>{
+        let url = "https://tran-netcentric-final.herokuapp.com/api/books/"
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200){
@@ -75,6 +82,18 @@
         xhttp.open('GET', url, true);
         xhttp.send();
     });
+
+    function deleteBook(id) {
+        let parameter = new URLSearchParams();
+        parameter.append("_id", id);
+        location.href = "delete-book.html?" + parameter.toString();
+    }
+
+    function updateBook(id) {
+        let parameter = new URLSearchParams();
+        parameter.append("_id", id);
+        location.href = "update-book.html?" + parameter.toString();
+    }
 
 </script>
 </body>

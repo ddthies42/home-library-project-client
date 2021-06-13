@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Insert Book</title>
+    <title>Update Book</title>
     <meta name="author" content="Thy Tran">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -28,9 +28,12 @@
         </div>
     </nav>
     <div class="container">
-        <form method="PATCH"
-              action="https://ancient-lake-88937.herokuapp.com/api/books/:id">
+        <form onsubmit="bookModify(); return false">
             <h2>Please insert the book information</h2>
+            <div class="mb-3 form-group">
+                <label for="_id">ID</label>
+                <input type="text" name="bookID" id="_id" class="form-control" required>
+            </div>
             <div class="mb-3 form-group">
                 <label for="title">Title</label>
                 <input type="text" name="title" id="title" class="form-control"
@@ -58,32 +61,32 @@
             </div>
             <div class="mb-3 form-group">
                 <p>Hard Cover?</p>
-                <input type="radio" id="yes" name="hardCover" value="yes" required>
-                <label for="yes">Yes</label>
-                <input type="radio" id="no" name="hardCover" value="no">
-                <label for="no">No</label>
+                <input type="radio" id="hardCover" name="hardCover" value="yes">
+                <label>Yes</label>
+                <input type="radio" name="hardCover" value="no">
+                <label>No</label>
             </div>
-            <!--            &lt;!&ndash; refresh the whole page &ndash;&gt;-->
-            <!--            <div class="mb-3 form-group">-->
-            <!--                <input type="submit" value="Submit">-->
-            <!--            </div>-->
+            <input type="submit" class="btn btn-lg btn-outline-primary" id="btnModifyBook"><br>
         </form>
     </div>
-    <div class="container">
-        <button class="btn btn-lg btn-outline-primary" id="btnInsertBook">Insert Book</button>
-    </div>
-    <div class="jumbotron" id="output">
+    <br><div class="jumbotron" id="message">
 
     </div>
 </div>
 <script>
-    document.getElementById("btnInsertBook").addEventListener("click", (event) =>{
-        let url = "https://ancient-lake-88937.herokuapp.com/"
+    console.log("bye");
+
+    function bookModify() {
+        let bookID = document.getElementById("_id").value;
+        let url = "https://tran-netcentric-final.herokuapp.com/api/books/";
+
         let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function (){
+        xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200){
-                document.getElementById("output").innerHTML =
-                    "<pre>" + this.responseText + "</pre>";
+                document.getElementById("message").innerHTML =
+                    "Book Updated!";
+            } else if (this.readyState == 4 && this.status != 200) {
+                document.getElementById("message").innerHTML = "Book not found! Please re-enter the Book ID.";
             }
         };
 
@@ -93,11 +96,20 @@
             "author="  + document.getElementById("author").value  + "&" +
             "price="  + document.getElementById("price").value  + "&" +
             "hardCover="  + document.getElementById("hardCover").value  + "&";
-        xhttp.open('POST', url, true);
+
+        xhttp.open('PATCH', url + bookID, true);
         // Just needed to place this line AFTER opening the object
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhttp.send(bookData);
-    });
+    }
+    // function bookData(book) {
+    //     document.getElementById("title").value = book["title"];
+    //     document.getElementById("description").value = book["description"];
+    //     document.getElementById("year").value = book["year"];
+    //     document.getElementById("author").value = book["author"];
+    //     document.getElementById("price").value = book["price"];
+    //     document.getElementById("hardCover").value = book["hardCover"];
+    // }
 </script>
 
 </body>

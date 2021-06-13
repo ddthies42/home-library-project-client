@@ -14,22 +14,25 @@
 <body>
 <div class="container">
     <h1>Insert Book</h1>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                <li><a href="index.html">Home Page</a></li>
-                <li><a href="books.html">Show all Books</a> </li>
-                <li><a href="show-book.html">Find a Book</a></li>
-                <li><a href="insert-book.html">Insert Book</a></li>
-                <li><a href="update-book.html">Update Book</a></li>
-                <li><a href="delete-book.html">Delete Book</a></li>
-            </ul>
-        </div>
-    </nav>
     <div class="container">
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home Page</a></li>
+                    <li><a href="books.html">Show all Books</a> </li>
+                    <li><a href="show-book.html">Find a Book</a></li>
+                    <li><a href="insert-book.html">Insert Book</a></li>
+                    <li><a href="update-book.html">Update Book</a></li>
+                    <li><a href="delete-book.html">Delete Book</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <!-- Form -->
         <form method="POST"
-              action="https://ancient-lake-88937.herokuapp.com/api/books">
+              action="https://tran-netcentric-final.herokuapp.com/api/books" onsubmit="bookFind(); return false">
             <h2>Please insert the book information</h2>
             <div class="mb-3 form-group">
                 <label for="title">Title</label>
@@ -58,31 +61,26 @@
             </div>
             <div class="mb-3 form-group">
                 <p>Hard Cover?</p>
-                <input type="radio" id="yes" name="hardCover" value="yes" required>
-                <label for="yes">Yes</label>
-                <input type="radio" id="no" name="hardCover" value="no">
-                <label for="no">No</label>
+                <input type="radio" id="hardCover" name="hardCover" value="yes" required>
+                <label>Yes</label>
+                <input type="radio" name="hardCover" value="no">
+                <label>No</label>
             </div>
-<!--            &lt;!&ndash; refresh the whole page &ndash;&gt;-->
-<!--            <div class="mb-3 form-group">-->
-<!--                <input type="submit" value="Submit">-->
-<!--            </div>-->
+            <input type="submit" class="btn btn-lg btn-outline-primary" id="btnInsertBook" value="Insert Book"> <br>
         </form>
     </div>
-    <div class="container">
-        <button class="btn btn-lg btn-outline-primary" id="btnInsertBook">Insert Book</button>
-    </div>
-    <div class="jumbotron" id="output">
 
+    <br><div class="jumbotron" id="output1">
     </div>
+
 </div>
 <script>
-    document.getElementById("btnInsertBook").addEventListener("click", (event) =>{
-        let url = "https://ancient-lake-88937.herokuapp.com/"
+    function bookFind() {
+        let url = "https://tran-netcentric-final.herokuapp.com/api/books/"
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200){
-                document.getElementById("output").innerHTML =
+                document.getElementById("output1").innerHTML =
                     "<pre>" + this.responseText + "</pre>";
             }
         };
@@ -97,7 +95,7 @@
         // Just needed to place this line AFTER opening the object
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhttp.send(bookData);
-    });
+    }
 </script>
 
 </body>
