@@ -10,6 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="update-book.html"></script>
+    <script src="delete-book.html"></script>
 </head>
 <body>
 <div class="container">
@@ -58,8 +60,8 @@
                 '           <td>' + data[book]["author"]+  '</td>\n' +
                 '           <td>' + data[book]["price"]+  '</td>\n' +
                 '           <td>' + data[book]["hardCover"]+  '</td>\n' +
-                '           <td style=\"text-align:center\"> <button class=\"btn btn-primary\" onclick=\"deleteBook(\''+ data[book]["_id"] +
-                '\')\">Delete</button> <br><br> <button class=\"btn btn-primary\" onclick=\"updateBook(\'' +
+                '           <td style=\"text-align:center\"> <button id=\"deleteButton\" class=\"btn btn-primary\" onclick=\"deleteBook(\''+ data[book]["_id"] +
+                '\')\">Delete</button> <br><br> <button id=\"updateButton\" class=\"btn btn-primary\" onclick=\"updateBook(\'' +
                 data[book]["_id"] +
                 '\')\">Update</button> </td>\n' +
                 '       </tr>\n';
